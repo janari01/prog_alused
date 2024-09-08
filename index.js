@@ -75,6 +75,17 @@ app.get('/delete-task/:taskId', (req, res) => {
     })
 })
 
+app.get('/delete-tasks', (req, res) => {
+    // loeb json faili
+    readFile('./tasks.json')
+    .then(tasks => {
+        // writeFile funktsioon kirjutab kõik json objektid tühja maatriksiga üle
+        writeFile('./tasks.json', "[]")
+
+        // suuname root lehele, nii näeb muudatusi
+        res.redirect('/')
+    })
+})
 
 const port = 3000
 app.listen(port, () => {
