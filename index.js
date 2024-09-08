@@ -38,24 +38,36 @@ const writeFile = (filename, data) => {
 app.get('/', (req, res) => {
 
     readFile('./tasks.json').then(tasks => {
-        res.render('index.ejs', {tasks: tasks})
+        res.render('index.ejs', {tasks: tasks, error: null})
     })
 })
 
 app.post('/', (req, res) => {
-    readFile('./tasks.json').then(tasks => {
-        let index = 0
+    let error = null
+    if (req.body.task.trim().length === 0) {
+        error = 'Please insert data'
+        readFile('./tasks.json')
+        .then(tasks => {
+            res.render('index.ejs', {
+                tasks: tasks,
+                error: error
+            })
+        })
+    } else {
+        readFile('./tasks.json').then(tasks => {
+            let index = 0
 
-        !tasks.length ? index = 0 : index = tasks[tasks.length - 1].id + 1
-        const newTask = {
-            "id": index,
-            "task": req.body.task
-        }
-        tasks.push(newTask)
-        const data = JSON.stringify(tasks, null, 2)
-        writeFile('./tasks.json', data)
-        res.redirect('/')
-    })
+            !tasks.length ? index = 0 : index = tasks[tasks.length - 1].id + 1
+            const newTask = {
+                "id": index,
+                "task": req.body.task
+            }
+            tasks.push(newTask)
+            const data = JSON.stringify(tasks, null, 2)
+            writeFile('./tasks.json', data)
+            res.redirect('/')
+        })
+    }
 })
 
 app.get('/delete-task/:taskId', (req, res) => {
