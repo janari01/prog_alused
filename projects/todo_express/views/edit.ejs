@@ -22,13 +22,8 @@
               <div class="card">
                 <div class="card-content">
 
-                        <div class="row teal lighten-4">
-                          <div class="col s12">
-                            <p class="center-align" id="errorT">
-                              
-                            </p>
-                          </div>
-                        </div>
+                    <div id="errorContainer"></div>
+        
     
                   <div class="row">
                     <form class="col s12">
@@ -63,10 +58,20 @@
             .then(data =>{
                 
                 if (!data){
-                    let errorT = document.querySelector('#errorT')
-                    errorT.innerText = 'Please insert data'
+                    let errorT = document.querySelector('#errorContainer')
+                    errorT.innerHTML = `
+                        <div class="row teal lighten-4">
+                          <div class="col s12">
+                            <p class="center-align" id="errorT">
+                              Please insert data
+                            </p>
+                          </div>
+                        </div>
+                    
+                    `
+                    //errorT.innerText = 'Please insert data'
                 }  else{
-                    window.location.href('/') 
+                    window.location.replace('/') 
                 } 
                 
             })
