@@ -12,10 +12,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
     
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 </head>
 <body>
 
-    <div class="container">
+
+    <div class="container" id="hideInput">
         <!-- Page Content goes here -->
         <div class="row">
             <div class="col s12">
@@ -48,15 +50,22 @@
 
               </div>
             </div>
+
+            
             
             <div class="card-action">
                 <ul class="collection">
                     
                     <% tasks.forEach(task => { %>
                         <li class="collection-item"><%= task.task %>
+              
                         <a href="delete-task/<%= task.id %>" class="secondary-content">
                           <i class="material-icons">delete</i>
                         </a>
+                        <a href="update-task/<%= task.id %>" class="secondary-content" id="editTasks">
+                          <i class="material-icons">edit</i>
+                        </a>
+                
                         </li>
                     <% }) %>
 

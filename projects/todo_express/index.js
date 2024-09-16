@@ -5,6 +5,9 @@ const path = require('path')
 
 app.set('view-engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'))
+//app.use('/js', express.static('js'))
+//app.use(express.static(path.join(__dirname, './public')))
+//app.use(express.static(path.join(__dirname, 'js')))
 app.use(express.urlencoded({ extended: true }));
 
 const readFile = filename => {
@@ -41,6 +44,37 @@ app.get('/', (req, res) => {
         res.render('index.ejs', {tasks: tasks, error: null})
     })
 })
+
+app.get('/update-task/insert', (req, res) => {
+    let {id, tasktext} = req.query  
+    id = parseInt(id)
+    if (tasktext.length){
+        readFile('./tasks.json')
+        .then(tasks => {
+            tasks.forEach((task, i) => {
+                if (task.id === id) {
+                    tasks[i] = { id, task: tasktext };
+    
+                    const data = JSON.stringify(tasks, null, 2);
+                    writeFile('./tasks.json', data)
+                }
+            })
+        })
+        res.json(true)
+    } else{
+        res.json(false)
+    } 
+    
+})
+
+app.get('/update-task/:id', (req, res) => {
+    //let {id, task} = req.query  
+    let id = req.params.id
+    
+    res.render('edit.ejs',{id: id, error: null} )
+})
+
+
 
 app.post('/', (req, res) => {
     let error = null
