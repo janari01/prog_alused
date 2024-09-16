@@ -71,7 +71,7 @@ app.get('/update-task/:id', (req, res) => {
     //let {id, task} = req.query  
     let id = req.params.id
     
-    res.render('edit.ejs',{id: id, error: null} )
+    res.render('edit.ejs',{id: id} )
 })
 
 
