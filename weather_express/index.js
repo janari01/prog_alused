@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const app = express()
 const path = require('path')
@@ -10,7 +11,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
 
-const key = '3e897ea34de3ab8f83acad63eaee3c1b'
+const key = process.env.KEY
 
 const weather = url => {
     return new Promise((resolve, reject) => {
