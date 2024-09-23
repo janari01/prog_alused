@@ -11,8 +11,6 @@ app.use(express.urlencoded({extended: true}))
 
 
 const key = '3e897ea34de3ab8f83acad63eaee3c1b'
-let city = 'Tartu'
-
 
 const weather = url => {
     return new Promise((resolve, reject) => {
@@ -26,7 +24,8 @@ const weather = url => {
             let result = {
                 des: des,
                 city: city, 
-                temp: temp
+                temp: temp,
+                error: null
             }
             resolve(result)
         })
@@ -47,7 +46,7 @@ app.all('/', (req, res) => {
 
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}`
 
-    weather(url).then(data => {res.render('default', data)})
+    weather(url).then(data => {res.render('default', data)}).catch(err => {res.render('default', {error: 'Problem with getting data'})})
 })
 
 app.listen(3000)
