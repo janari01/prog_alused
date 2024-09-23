@@ -13,38 +13,41 @@ app.use(express.urlencoded({extended: true}))
 const key = '3e897ea34de3ab8f83acad63eaee3c1b'
 let city = 'Tartu'
 
-app.get('/', (req, res) => { 
 
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}`)
-    .then(response => response.json())
-    .then(data => {
-        let des = data.weather[0].description
-        let city = data.name
-        let temp = Math.round(parseFloat(data.main.temp) - 273.15)
+const weather = url => {
+    return new Promise((resolve, reject) => {
+        fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            let des = data.weather[0].description
+            let city = data.name
+            let temp = Math.round(parseFloat(data.main.temp) - 273.15)
 
-        res.render('default.ejs', {
-            des: des,
-            city: city, 
-            temp: temp
+            let result = {
+                des: des,
+                city: city, 
+                temp: temp
+            }
+            resolve(result)
+        })
+        .catch(err => {
+            reject(err)
         })
     })
-})
+} 
 
-app.post('/', (req, res) => {
-    let city = req.body.cityname
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}`)
-    .then(response => response.json())
-    .then(data => {
-        let des = data.weather[0].description
-        let city = data.name
-        let temp = Math.round(parseFloat(data.main.temp) - 273.15)
+app.all('/', (req, res) => {
+    let city
+    if (req.method === 'GET') {
+        city = 'Tartu'
+    } 
+    if (req.method === 'POST') {
+        city = req.body.cityname
+    } 
 
-        res.render('default.ejs', {
-            des: des,
-            city: city, 
-            temp: temp
-        })
-    })
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}`
+
+    weather(url).then(data => {res.render('default', data)})
 })
 
 app.listen(3000)
