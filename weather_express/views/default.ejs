@@ -1,13 +1,13 @@
 
-    <%- include('header'); %>
+    <%- include('header.ejs'); %>
 
     <div class="container">
         <div class="row">
             <div class="col-md-6 mx-auto text-center bg-primary mt-5 p-5 rounded">
-                <h1 id="location"></h1>
+                <h1 id="location"><%= city %></h1>
                 <ul class="list-group mt-3">
-                    <li class="list-group-item" id="description"></li>
-                    <li class="list-group-item" id="temp"></li>
+                    <li class="list-group-item" id="description"><%= des %></li>
+                    <li class="list-group-item" id="temp"> <%= temp %></li>
                 </ul>
                 <h1 class="mt-3">Change city</h1>
                 <form id="change-city">
@@ -21,4 +21,4 @@
         </div>
     </div>
 
-    <%- include('footer'); %>
+    <%- include('footer.ejs'); %>
