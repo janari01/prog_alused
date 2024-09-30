@@ -46,15 +46,32 @@ app.get('/', (req, res) => {
     })
 })
 
+function get_data(query) {
+    return new Promise((resolve, reject) => {
+        connection.query(query, (err, result) => {
+            if (err) { reject(err) }
+            resolve(result)
+        })
+    })
+}
+
 app.get('/article/:slug', (req, res) => {
     let query = `SELECT * FROM article WHERE slug="${req.params.slug}"`
     let article
-    connection.query(query, (err, result) => {
+    connection.query(query, async (err, result) => {
         if (err) { throw err }
         article = result
-        res.render('article', {
-            article: article
+
+        get_data(`SELECT * FROM author WHERE id="${article[0].author_id}"`)
+        .then(author => {
+            console.log(author[0])
+            res.render('article', {
+                article: article,
+                author: author[0]
+            })
         })
+
+
     })
 })
 
