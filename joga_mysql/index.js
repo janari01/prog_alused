@@ -25,16 +25,28 @@ const connection = mysql.createConnection({
     host: process.env.HOST,
     user: process.env.USER,
     password: process.env.PASSWORD,
-    database: process.env.DATABASE
+    database: process.env.DATABASE,
+    port: process.env.PORT
 })
-
-console.log(connection)
 
 connection.connect(err => {
     if (err) { throw err }
     console.log('yee')
 })
 
-app.listen(process.env.PORT || 3000, () => {
+app.get('/', (req, res) => {
+    let query = 'SELECT * FROM `article`'
+    let articles = []
+    connection.query(query, (err, result) => {
+        if (err) { throw err }
+        articles = result
+        res.render('index', {
+            articles: articles
+        })
+    })
+})
+
+
+app.listen(3000, () => {
     console.log('active')
 })
