@@ -55,6 +55,20 @@ function get_data(query) {
     })
 }
 
+app.get('/author/:num', async (req, res) => {
+    let id = req.params.num
+    let articles = await get_data(`SELECT * FROM article WHERE author_id="${id}"`)
+    get_data(`SELECT * FROM author WHERE id="${id}"`)
+    .then(author => {
+        res.render('author', {
+            articles: articles,
+            author: author[0]
+        })
+    })
+
+
+})
+
 app.get('/article/:slug', (req, res) => {
     let query = `SELECT * FROM article WHERE slug="${req.params.slug}"`
     let article
@@ -64,7 +78,6 @@ app.get('/article/:slug', (req, res) => {
 
         get_data(`SELECT * FROM author WHERE id="${article[0].author_id}"`)
         .then(author => {
-            console.log(author[0])
             res.render('article', {
                 article: article,
                 author: author[0]
