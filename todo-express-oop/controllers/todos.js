@@ -18,6 +18,10 @@ class todoController {
 
     }
 
+    getTodos(req, res) {
+        res.json({task: this.TODOS})
+    }
+
 }
 
 export const TodoController = new todoController()
