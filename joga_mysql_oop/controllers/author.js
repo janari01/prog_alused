@@ -13,7 +13,6 @@ class authorController {
         const author = await authorModel.findById(parseInt(req.params.num))
         const articles = await articleModel.findMany(author.id) // accepts one parameter
         author['articles'] = articles
-        console.log(articles)
         res.status(200).json({author: author})
     }
 }
