@@ -11,9 +11,9 @@ class authorController {
 
     async getAuthorById(req, res) {
         const author = await authorModel.findById(parseInt(req.params.num))
-        // console.log(author)
-        const articles = await articleModel.findMany('author_id', author.id)
+        const articles = await articleModel.findMany(author.id) // accepts one parameter
         author['articles'] = articles
+        console.log(articles)
         res.status(200).json({author: author})
     }
 }
