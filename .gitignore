@@ -5,3 +5,5 @@ joga_mysql/.env
 todo-express-oop/node_modules
 joga_mysql_oop/node_modules
 joga_mysql_oop/.env
+web-shop/node_modules
+web-shop/.env
