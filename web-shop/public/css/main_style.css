@@ -1,0 +1,121 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+}
+
+:root {
+    --black: #0f0f0f;
+    --less-black: #1e1e1e;
+    --less-black-opacity: #1e1e1e80;
+    --white: #fff;
+    --less-white: #f5f5f5;
+    --gold: #edad30;
+    --lighter-gold: #f8b530;
+    --lighter-gold-opacity: #f9bc41b3;
+    --white-background: #fff;
+    --gray-background: #f5f5f5
+}
+
+#header_nav {
+    background-color: var(--black);
+    height: 65px;
+    position: fixed;
+    width: 100%;
+    z-index: 9999999
+}
+
+#navigation_bar {
+    height: 65px
+}
+
+#navigation_bar,#navigation_bar > ul {
+    align-items: center;
+    display: flex;
+    justify-content: center
+}
+
+#navigation_bar > ul {
+    gap: 25px
+}
+
+#navigation_bar > ul > li {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    height: 42.66667px;
+    justify-content: center;
+    list-style-type: none;
+    text-underline-offset: 4px;
+}
+
+#navigation_bar > ul > li > a {
+    text-align: center;
+    color: var(--white);
+    min-width: 140px!important;
+    word-break: break-all;
+    font-size: 18px;
+    font-weight: 500;
+    -webkit-text-decoration: underline solid 2px var(--black);
+    text-decoration: underline solid 2px var(--black);
+    text-transform: uppercase;
+    transition: all .2s ease
+}
+
+#navigation_bar>ul>li.active_nav a, #navigation_bar>ul>li:hover a {
+    -webkit-text-decoration: underline solid 2px var(--gold);
+    text-decoration: underline solid 2px var(--gold);
+}
+/* end */
+
+/* start */
+
+.product_container {
+    position: relative;
+    top: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 75px;
+}
+
+.product_container > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    /* height: 400px; */
+    box-shadow: 0px 4px 10px var(--less-black-opacity);
+}
+
+.product > p:nth-child(1) {
+    font-weight: bold;
+    font-size: 18px;
+    padding-top: 10px;
+}
+
+.product > p:nth-child(3) {
+    font-weight: 700;
+    color: var(--less-black);
+    font-size: 18px;
+    padding: 10px;
+}
+
+.product button {
+    width: 100px;
+    height: 30px;
+    border: 1px solid var(--less-black-opacity);
+    color: var(--less-black);
+    cursor: pointer;
+    margin: 10px;
+}
+
+.product_container > div > img {
+    height: 200px;
+    width: auto;
+}

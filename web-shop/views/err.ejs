@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+    <link href="/css/main_style.css" rel="stylesheet"/>
+</head>
+<body>
+    <header id="header_nav">
+        <nav id="navigation_bar">
+            <ul>
+                <li><a href="#">Shop</a></li>
+                <li><a href="#">Products</a></li>
+                <li><a href="#">Cart</a></li>
+                <li><a href="#">Add Product</a></li>
+                <li><a href="#">Admin Products</a></li>
+            </ul>
+        </nav>
+    </header>
+    <h1 style="position: relative; top: 80px;">Page not found</h1>
+
+    <script>
+        const routes = ['/', '/products', '/cart', '/add-product', '/admin-products']
+        let elements = document.querySelectorAll('#navigation_bar ul li a')
+        const nav_a = document.querySelectorAll('#navigation_bar ul li')
+
+        let basePath = window.location.pathname.includes('/admin') && window.location.pathname !== '/admin-products' ? '/admin' : ''
+        
+        let path = window.location.pathname.replace(/\/$/, '')
+
+        for (let x = 0; x < routes.length; x++) {
+            elements[x].href = basePath + routes[x]
+            let normalizedRoute = (basePath + routes[x]).replace(/\/$/, '')
+            if (normalizedRoute === path) {
+                nav_a[x].classList.add('active_nav')
+            }  else {
+                nav_a[x].classList.remove('active_nav')
+            }
+        }
+
+    </script>
+</body>
+</html>
