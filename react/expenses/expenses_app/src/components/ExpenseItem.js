@@ -1,9 +1,10 @@
 import './ExpenseItem.css'
 import ExpenseDate from "./ExpenseDate";
 
-function ExpenseItem(props){
+function ExpenseItem(props) {
+    const classes = 'card ' + props.className
     return (
-        <div className="card expense-item">
+        <div className={classes}>
             <ExpenseDate date={props.expenseData.date}></ExpenseDate>
             <div className="expense-item__description">
                 <h2>{props.expenseData.title}</h2>
