@@ -7,3 +7,24 @@ joga_mysql_oop/node_modules
 joga_mysql_oop/.env
 web-shop/node_modules
 web-shop/.env
+
+react/expenses/expenses_app/node_modules
+react/expenses/expenses_app/.pnp
+react/expenses/expenses_app/.pnp.js
+
+# testing
+react/expenses/expenses_app/coverage
+
+# production
+react/expenses/expenses_app/build
+
+# misc
+react/expenses/expenses_app/.DS_Store
+react/expenses/expenses_app/.env.local
+react/expenses/expenses_app/.env.development.local
+react/expenses/expenses_app/.env.test.local
+react/expenses/expenses_app/.env.production.local
+react/expenses/expenses_app/
+react/expenses/expenses_app/npm-debug.log*
+react/expenses/expenses_app/yarn-debug.log*
+react/expenses/expenses_app/yarn-error.log*
