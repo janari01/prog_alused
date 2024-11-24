@@ -1,6 +1,5 @@
 import './App.css';
 import NewExpense from './components/NewExpense/newExpense';
-
 import Expenses from "./components/Expenses/Expenses";
 
 function App() {
@@ -16,9 +15,14 @@ function App() {
         price: 3.99
     }
   ]
+
+  function addExpenseHandler(expense) {
+    console.log(expense)
+  }
+
   return (
     <div className="App">
-      <NewExpense></NewExpense>
+      <NewExpense onAddExpense={addExpenseHandler} />
       <Expenses expenses={expenses} />
     </div>
   );
