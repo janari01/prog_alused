@@ -24,7 +24,6 @@ react/expenses/expenses_app/.env.local
 react/expenses/expenses_app/.env.development.local
 react/expenses/expenses_app/.env.test.local
 react/expenses/expenses_app/.env.production.local
-react/expenses/expenses_app/
 react/expenses/expenses_app/npm-debug.log*
 react/expenses/expenses_app/yarn-debug.log*
 react/expenses/expenses_app/yarn-error.log*
