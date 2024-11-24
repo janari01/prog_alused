@@ -9,13 +9,15 @@ function Expenses(props) {
     function filterChangeHandler(selectedYear) {
         setSelectedYear(selectedYear)
     }
-    console.log(selectedYear)
+    
+    
 
     return (
         <Card className='expenses'>
             <ExpensesFilter selected={selectedYear} onChangeFilter={filterChangeHandler} />
-            <ExpenseItem className='expense-item' expenseData={props.expenses[0]}></ExpenseItem>
-            <ExpenseItem className='expense-item' expenseData={props.expenses[1]}></ExpenseItem>
+            {
+            props.expenses.map(expense => <ExpenseItem key={expense.id} className='expense-item' expenseData={expense} />)
+            }
         </Card>
     )
 }

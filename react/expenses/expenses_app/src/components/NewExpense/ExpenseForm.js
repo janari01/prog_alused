@@ -3,15 +3,15 @@ import { useState } from 'react'
 
 function ExpenseForm(props) {
     const [enteredTitle, setEnteredTitle] = useState('')
-    const [enteredPrice, setEnteredPrice] = useState('')
+    const [enteredAmount, setEnteredAmount] = useState('')
     const [enteredDate, setEnteredDate] = useState('')
 
     function titleChangedHandler(e) {
         setEnteredTitle(e.target.value)
     }
 
-    function priceChangeHandler(e) {
-        setEnteredPrice(e.target.value)
+    function amountChangeHandler(e) {
+        setEnteredAmount(e.target.value)
     }
 
     function dateChangeHandler(e) {
@@ -22,12 +22,12 @@ function ExpenseForm(props) {
         e.preventDefault()
         const expenseData = {
             title: enteredTitle,
-            price: enteredPrice,
+            amount: enteredAmount,
             date: new Date(enteredDate)
         }
         props.onSaveExpenseData(expenseData)
         setEnteredTitle('')
-        setEnteredPrice('')
+        setEnteredAmount('')
         setEnteredDate('')
     }
 
@@ -45,8 +45,8 @@ function ExpenseForm(props) {
                 <div className='new-expense__control'>
                     <label>Price</label>
                     <input type='number' min='0.01' step='0.01'
-                    onChange={priceChangeHandler}
-                    value={enteredPrice}
+                    onChange={amountChangeHandler}
+                    value={enteredAmount}
                     />
                 </div>
 
