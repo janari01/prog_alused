@@ -13,7 +13,7 @@ function Expenses(props) {
 
     // to display expense items that match the current selected year
     const filteredExpenses = props.expenses.filter(expense => 
-        expense.date.getFullYear().toString() === selectedYear)
+        new Date(expense.date).getFullYear().toString() === selectedYear)
 
     return (
         <Card className='expenses'>
