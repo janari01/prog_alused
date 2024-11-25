@@ -19,18 +19,10 @@
             </ul>
         </nav>
     </header>
+
+    <section class="product_container"></section>
     
-    <section class="product_container">
-        <% products.forEach(product => { %>
-            <div class="product">
-                <p><%= product.title %></p>
-                <img src="<%= product.imageUrl %>" alt="Product" width="100%" />
-                <p>$<%= product.price %></p>
-                <p><%= product.description %></p>
-                <button id="add_to_cart">Add to Cart</button>
-            </div>
-        <% }) %>
-    </section>
+    
 
     <script>
         const routes = ['/', '/products', '/cart', '/add-product', '/admin-products']
@@ -51,43 +43,54 @@
             }
         }
 
-        let storage_list = JSON.parse(sessionStorage.getItem("cart")) || []
-        // for cart functionality, adding nd' stuff
 
-        // button
-        const product_elements = document.querySelectorAll('#add_to_cart')
-        product_elements.forEach(product => {
-            const all_buttons_parents = product.closest('.product')
+
+        const product_container = document.querySelector('.product_container')
+        let storage_list = JSON.parse(sessionStorage.getItem("cart"))
+        
+        storage_list.forEach(pr => {
+            product_container.innerHTML += `
+            <div class="product" style="min-width: 200px">
+                <p>${pr.title}</p>
+                <p>${pr.description}</p>
+                <p>${pr.price}</p>
+                <p>Products Count:</p>
+                <button id="remove_from_cart">Remove</button>
+            </div>
+            `
+        })
+
+        document.querySelectorAll('#remove_from_cart').forEach(el => {
+            const all_buttons_parents = el.closest('.product')
             const title_all_buttons_parent = all_buttons_parents.querySelector('p:nth-child(1)').textContent
+            const products_left_all_buttons_parent = all_buttons_parents.querySelector('p:nth-child(4)')
             const productInCart = storage_list.find(item => item.title === title_all_buttons_parent);
             if (productInCart) {
-                product.innerHTML = `Add to Cart: ${productInCart.quantity}`;
+                products_left_all_buttons_parent.innerHTML = `Products Count: ${productInCart.quantity}`;
             } else {
-                product.innerHTML = 'Add to Cart';
+                products_left_all_buttons_parent.innerHTML = 'Products Count:';
             }
 
-
-            product.addEventListener('click', (e) => {
+            el.addEventListener('click', (e) => {
                 const productElement = e.target.closest('.product')
                 const title = productElement.querySelector('p:nth-child(1)').textContent
-                const imageUrl = productElement.querySelector('img').src
-                const price = productElement.querySelector('p:nth-child(3)').textContent
-                const description = productElement.querySelector('p:nth-child(4)').textContent
-
+                const products_left = productElement.querySelector('p:nth-child(4)')
                 const existingProduct = storage_list.find(product => product.title === title)
 
                 if (existingProduct) {
-                    existingProduct.quantity += 1
-                    product.innerHTML = `Add to Cart: ${existingProduct.quantity}`
-                } else {
-                    storage_list.push( {title, price, description, quantity: 1} )
-                    product.innerHTML = `Add to Cart: 1`
+                    existingProduct.quantity -= 1
+                    products_left.innerHTML = `Products Count: ${existingProduct.quantity}`
+
+                    if (existingProduct.quantity <= 0) {
+                        storage_list = storage_list.filter(p => p.title !== title)
+                        productElement.remove()
+                    }
+
+                    sessionStorage.setItem("cart", JSON.stringify(storage_list))
+
                 }
-                sessionStorage.setItem("cart", JSON.stringify(storage_list))
             })
         })
-
-
 
     </script>
 </body>

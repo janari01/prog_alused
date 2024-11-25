@@ -119,3 +119,25 @@ body {
     height: 200px;
     width: auto;
 }
+
+/* form */
+#add_product_form {
+    position: relative;
+    top: 75px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 75px);
+}
+
+#add_product_form > div {
+    display: flex;
+    flex-flow: column wrap;
+    padding: 10px;
+}
+
+#add_btn {
+    width: 100px;
+    height: 35px;
+}

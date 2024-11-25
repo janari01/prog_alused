@@ -19,6 +19,12 @@ class sql_base {
         const result = await this.executeQuery(query)
         return result
     }
+
+    async addProduct(data) {
+        const query = `INSERT INTO ${this.table_name} (title, price, description, imageUrl) VALUES (?, ?, ?, ?)`
+        const result = await this.executeQuery(query, data)
+        return result
+    }
 }
 
 module.exports = sql_base

@@ -10,6 +10,11 @@ class shop_model extends sql_base {
         return productsAll
     }
 
+    async addProduct(data) {
+        const add_product = await super.addProduct(data)
+        return add_product
+    }
+
 }
 
 module.exports = shop_model
