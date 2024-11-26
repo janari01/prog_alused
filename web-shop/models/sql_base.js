@@ -25,6 +25,20 @@ class sql_base {
         const result = await this.executeQuery(query, data)
         return result
     }
+
+    async updateProduct(data) {
+        const id = data[data.length - 1]
+        data.splice(data.length - 1, 1)
+        const query = `UPDATE ${this.table_name} SET title=?, price=?, description=?, imageUrl=? WHERE id=${id}`
+        const result = await this.executeQuery(query, data)
+        return result
+    }
+
+    async deleteProduct(data) {
+        const query = `DELETE FROM ${this.table_name} WHERE id=${data[0]}`
+        const result = await this.executeQuery(query)
+        return result
+    }
 }
 
 module.exports = sql_base

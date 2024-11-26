@@ -20,26 +20,22 @@
         </nav>
     </header>
     
-    <form id="add_product_form" method="POST" action="/add-product">
-        <div>
-            <label for="title">title</label>
-            <input type="text" id="title" name="title" required>
-        </div>
-        <div>
-            <label for="price">price</label>
-            <input type="number" id="price" name="price" required>
-        </div>
-        <div>
-            <label for="description">description</label>
-            <input type="text" id="description" name="description" required>
-        </div>
-        <div>
-            <label for="imageUrl">imageUrl</label>
-            <input type="text" id="imageUrl" name="imageUrl" required>
-        </div>
-
-        <button id="add_btn">Add</button>
-    </form>
+    <section class="product_container">
+        <% products.forEach(product => { %>
+            <div class="product" style="min-width: 200px;">
+                <form method="POST" action="/admin-products" style="display: flex; flex-direction: column; align-items: center;">
+                    <input name="title" type="text" value="<%= product.title %>">
+                    <input name="imageUrl" type="text" value="<%= product.imageUrl %>">
+                    <input name="price" type="number" step="any" value="<%= product.price %>">
+                    <input name="description" type="text" value="<%= product.description %>">
+                    <button name="id" value="<%= product.id %>" type="submit" id="admin_save">Save</button>
+                </form>
+                <form method="GET" action="/admin-products/del">
+                    <button type="submit" id="admin_delete" name="id" value="<%= product.id %>">Delete</button>
+                </form>
+            </div>
+        <% }) %>
+    </section>
 
     <script>
         const routes = ['/shop', '/products', '/cart', '/add-product', '/admin-products']
@@ -59,7 +55,6 @@
                 nav_a[x].classList.remove('active_nav')
             }
         }
-
 
     </script>
 </body>

@@ -7,6 +7,21 @@ class shop_controller {
     constructor() {
 
     }
+    async update_admin(req, res) {
+        const {title, imageUrl, price, description, id} = req.body
+        const update_product = await shop_model_var.updateProduct([title, price, description, imageUrl, id])
+        res.status(200).redirect('/admin-products')
+    }
+    async delete_admin(req, res) {
+        const id = req.query.id
+        const delete_product = await shop_model_var.deleteProduct([id])
+        res.status(200).redirect('/admin-products')
+    }
+
+    async render_admin(req, res) {
+        const products = await shop_model_var.findAll()
+        res.render('admin', { products: products })
+    }
 
     async get_all_products(req, res) {
         const products = await shop_model_var.findAll()

@@ -15,6 +15,17 @@ class shop_model extends sql_base {
         return add_product
     }
 
+    async updateProduct(data) {
+        const update_product = await super.updateProduct(data)
+        return update_product
+    }
+
+    async deleteProduct(data) {
+        const delete_product = await super.deleteProduct(data)
+        return delete_product
+    }
+
+
 }
 
 module.exports = shop_model
