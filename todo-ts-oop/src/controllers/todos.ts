@@ -47,3 +47,22 @@ export const updateTodo = (req: Request, res: Response, next: NextFunction) => {
     console.log(err)
   }
 }
+
+export const deleteTodo = (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const todoId = req.params.id
+    const todoIndex = todos.findIndex(todo => todo.id === todoId)
+
+    if (todoIndex < 0) {
+      throw new Error('Id not correct/missing')
+    }
+
+    todos.splice(todoIndex, 1)
+
+    res.status(201).json({
+      message: 'Deleted',
+    })
+  } catch(err) {
+    console.log(err)
+  }
+}
