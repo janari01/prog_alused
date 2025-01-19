@@ -27,6 +27,8 @@ react/expenses/expenses_app/.env.production.local
 react/expenses/expenses_app/npm-debug.log*
 react/expenses/expenses_app/yarn-debug.log*
 react/expenses/expenses_app/yarn-error.log*
+react/Rakenduse_loomine/node_modules
 
 # ts stuff
 todo-ts-oop/node_modules
+todo-ts-oop/dist
