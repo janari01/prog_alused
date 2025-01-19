@@ -26,3 +26,24 @@ export const getTodos = (req: Request, res: Response, next: NextFunction) => {
     console.log(err)
   }
 }
+
+export const updateTodo = (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const todoId = req.params.id
+    const updatedTask = (req.body as {task: string}).task
+    const todoIndex = todos.findIndex(todo => todo.id === todoId)
+
+    if (todoIndex < 0) {
+      throw new Error('Id not correct/missing')
+    }
+
+    todos[todoIndex] = new Todo(todos[todoIndex].id, updatedTask)
+
+    res.status(201).json({
+      message: 'Updated',
+      updatedTask: todos[todoIndex]
+    })
+  } catch(err) {
+    console.log(err)
+  }
+}
