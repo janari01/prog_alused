@@ -35,3 +35,4 @@ todo-ts-oop/dist
 
 # joga_sequelize
 joga_sequelize/node_modules
+joga_sequelize/.env
