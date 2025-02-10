@@ -32,3 +32,6 @@ react/Rakenduse_loomine/node_modules
 # ts stuff
 todo-ts-oop/node_modules
 todo-ts-oop/dist
+
+# joga_sequelize
+joga_sequelize/node_modules
