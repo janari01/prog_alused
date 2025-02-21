@@ -10,6 +10,7 @@ module.exports = {
         image: "ashtanga.jpg",
         body: "<p>random words random words random words random words random words random words random words random words random words random words random words random words random words random words</p>",
         published: "2020-01-10 19:02:30",
+        author_id: 1,
         createdAt: new Date(),
         updatedAt: new Date()
       }]),
@@ -19,6 +20,7 @@ module.exports = {
         image: "morning.jpg",
         body: "<p>random words random words random words random words random words random words random words random words random words random words random words random words random words random words</p>",
         published: "2021-02-08 11:04:30",
+        author_id: 3,
         createdAt: new Date(),
         updatedAt: new Date()
       }]),
@@ -28,6 +30,7 @@ module.exports = {
         image: "yoga-teacher.jpg",
         body: "<p>random words random words random words random words random words random words random words random words random words random words random words random words random words random words</p>",
         published: "2022-08-04 13:02:30",
+        author_id: 1,
         createdAt: new Date(),
         updatedAt: new Date()
       }]),
