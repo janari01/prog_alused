@@ -64,6 +64,18 @@ const updateArticle = (req, res) => {
     .catch((error) => {
       return res.status(500).send(error.message)
     })
+  } else if (req.method == "DELETE") {
+    models.Article.destroy({
+      where: {
+        id: req.params.id,
+      },
+    })
+    .then((article) => {
+      return res.status(200).json({ message: "Delete article" })
+    })
+    .catch((err) => {
+      return res.status(500).send(err.message)
+    })
   }
 };
 
