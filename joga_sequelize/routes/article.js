@@ -4,5 +4,6 @@ const articleController = require('../controllers/article')
 
 router.get('/', articleController.getAllArticles)
 router.get('/article/:slug', articleController.getArticleBySlug)
+router.get('/author/:id', articleController.getArticlesByAuthor)
 
 module.exports = router
