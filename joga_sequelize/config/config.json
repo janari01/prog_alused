@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "secret",
+    "password": "secret",
+    "database": "secret",
+    "host": "secret",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "secret",
+    "password": "secret",
+    "database": "secret",
+    "host": "secret",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "secret",
+    "password": "secret",
+    "database": "secret",
+    "host": "secret",
+    "dialect": "mysql"
+  }
+}
