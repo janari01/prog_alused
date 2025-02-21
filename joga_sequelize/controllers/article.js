@@ -1,6 +1,3 @@
-const Sequelize = require('sequelize')
-const sequelize = new Sequelize(process.env.URI)
-
 const models = require('../models')
 
 const getAllArticles = (req, res) => {
@@ -19,9 +16,17 @@ const getArticleBySlug = (req, res) => {
     where: {
       slug: req.params.slug
     },
-    include: [{
-      model: models.Author
-    }]
+    include: [
+      {
+        model: models.Author,
+      },
+      {
+        model: models.Tag,
+        through:{
+            model: models.ArticleTag
+        }
+      }
+  ],
   })
   .then(article => {
     console.log(article)
@@ -35,7 +40,7 @@ const getArticleBySlug = (req, res) => {
 const getArticlesByAuthor = (req, res) => {
   models.Article.findAll({
     where: {
-      author_id: req.params.id
+      author_id: req.params.author_id
     }
   })
   .then(articles => {

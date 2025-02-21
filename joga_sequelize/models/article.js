@@ -9,12 +9,16 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) {
+  static associate(models) {
       this.belongsTo(models.Author, {
         foreignKey: {
           name: 'AuthorId',
           field: 'author_id'
         }
+      })
+      this.belongsToMany(models.Tag, {
+        foreignKey: 'articleId',
+        through: 'ArticleTags'
       })
     }
   }
@@ -46,7 +50,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATE,
       allowNull: false
     },
-    author_id: DataTypes.INTEGER
+    author_id: {
+      type: DataTypes.INTEGER
+    }
   }, {
     sequelize,
     modelName: 'Article',
