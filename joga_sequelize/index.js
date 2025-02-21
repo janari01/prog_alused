@@ -17,8 +17,7 @@ sequelize
     console.error(err)
   })
 
-app.get('/', (req, res) => {
-  res.json({message: 'welcome'})
-})
+const articleRouter = require('./routes/article')
+app.use('/', articleRouter)
 
 app.listen(3000, () => console.log('localhost 3000'))
